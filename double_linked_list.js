@@ -1,4 +1,4 @@
-class dLinkedListNode {
+class DLinkedListNode {
     constructor (prevNode, nextNode, value) {
         this.prevNode = prevNode;
         this.nextNode = nextNode;
@@ -6,7 +6,7 @@ class dLinkedListNode {
     }
 }
 
-class dLinkedList {
+class DLinkedList {
     _head = null;
     _tail = null;
     _size = 0;
@@ -25,10 +25,10 @@ class dLinkedList {
     addFirst (value) {
         let newNode;
         if (!this._head) {
-            newNode = new dLinkedListNode(null, null, value);
+            newNode = new DLinkedListNode(null, null, value);
             this._tail = newNode;
         } else {
-            newNode = new dLinkedListNode(null, this._head, value);
+            newNode = new DLinkedListNode(null, this._head, value);
             this._head.prevNode = newNode;
         }
         this._head = newNode;
@@ -38,10 +38,10 @@ class dLinkedList {
     addEnd (value) {
         let newNode;
         if (!this._head) {
-            newNode = new dLinkedListNode(null, null, value);
+            newNode = new DLinkedListNode(null, null, value);
             this._head = newNode;
         } else {
-            newNode = new dLinkedListNode(this._tail, null, value);
+            newNode = new DLinkedListNode(this._tail, null, value);
             this._tail.nextNode = newNode;
         }
         this._tail = newNode;
@@ -51,7 +51,7 @@ class dLinkedList {
     insert (prevNodeValue, value) {
         let prevNode = this.search(prevNodeValue);
         if (prevNode) {
-            let node = new dLinkedListNode(prevNode, prevNode.nextNode, value);
+            let node = new DLinkedListNode(prevNode, prevNode.nextNode, value);
             prevNode.nextNode = node;
             if (node.nextNode) {
                 node.nextNode.prevNode = node;
@@ -65,7 +65,7 @@ class dLinkedList {
     update (nodeValue, newValue) {
         let node = this.search(nodeValue);
         if (node) {
-            let newNode = new dLinkedListNode(node.prevNode, node.nextNode, newValue);
+            let newNode = new DLinkedListNode(node.prevNode, node.nextNode, newValue);
             if (node.prevNode) { node.prevNode.nextNode = newNode; };
             if (node.nextNode) { node.nextNode.prevNode = newNode; };
             if (this._head == node) { this._head = newNode };
