@@ -1,19 +1,21 @@
+type NodesList = [string, number][];
+
 // Входные параметры.
-const TOWNS = [
+const TOWNS: string[] = [
     'A', 'B', 'C', 'D', 'E',
     'F', 'G', 'H', 'J', 'K'
 ];
 
-const TARIFFS = [
+const TARIFFS: string[] = [
     'A;B=1', 'A;D=5', 'B;C=2', 'B;E=2', 'C;K=7', 'D;H=7',
     'E;F=1', 'E;H=3', 'F;J=4', 'G;H=7', 'H;J=1', 'J;K=1'
 ];
 
-const ROUTE = 'A;H';
+const ROUTE: string = 'A;H';
 
 // Функция.
-function calcMinCost (towns, tariffs, route) {
-    let G = new Map();
+function calcMinCost (towns: string[], tariffs: string[], route: string) {
+    let G: Map<string, Array<[string, number]>> = new Map();
 
     for (let town of towns) {
         G.set(town, []);
@@ -24,17 +26,17 @@ function calcMinCost (towns, tariffs, route) {
         G.get(node1).push([node2, +cost]);
         G.get(node2).push([node1, +cost]);
     };
-    
-    let dist = new Map();
+
+    let dist: Map<string, number> = new Map();
     for (let key of G.keys()) {
         dist.set(key, Infinity);
     };
     let [start, finish] = route.split(';');
     dist.set(start, 0);
-    let work = [];
+    let work: NodesList = [];
     work.push([start, 0]);
-    let visited = [];
-    let curNode = null;
+    let visited: string[] = [];
+    let curNode: [string, number] | null = null;
 
     while (work.length > 0) {
         work.sort((a, b) => b[1] - a[1]);
@@ -60,4 +62,4 @@ function calcMinCost (towns, tariffs, route) {
 };
 
 // Проверка работы функции.
-let sss = calcMinCost(TOWNS, TARIFFS, ROUTE);
+let sss: number | undefined = calcMinCost(TOWNS, TARIFFS, ROUTE);
